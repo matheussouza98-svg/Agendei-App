@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "App-Teste",
-    "slug": "App-Teste",
+    "name": "Tela Inicial",
+    "slug": "tela-inicial",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
