@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList, Image } from 'react-native';
 
-export default function ReservasScreen({ route }) {
+export default function ReservasScreen({ route, navigation }) {
   const clinicaSelecionada = route.params?.clinica?.nome || 'Clínica Médica São Remo';
 
   const reservas = [
@@ -34,6 +34,9 @@ export default function ReservasScreen({ route }) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
+        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+          <Text style={styles.backIcon}>←</Text>
+        </TouchableOpacity>
         <Text style={styles.headerTitle}>Minhas Reservas</Text>
       </View>
 
@@ -86,10 +89,14 @@ export default function ReservasScreen({ route }) {
       />
 
       <View style={styles.tabBar}>
-        <Text style={styles.tabIcon}>🏠</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+          <Text style={styles.tabIconActive}>🏠</Text>
+        </TouchableOpacity>
         <Text style={styles.tabIcon}>🔎</Text>
         <Text style={styles.tabIconActive}>📅</Text>
-        <Text style={styles.tabIcon}>👤</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+          <Text style={styles.tabIconActive}>👤</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -104,11 +111,24 @@ const styles = StyleSheet.create({
     height: 95,
     borderBottomWidth: 1,
     borderBottomColor: '#e3e3e3',
-    justifyContent: 'flex-end',
+    flexDirection: 'row',
     alignItems: 'center',
+    paddingHorizontal: 18,
     paddingBottom: 14,
   },
+  backButton: {
+    width: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  backIcon: {
+    fontSize: 40,
+    color: '#5cc6ba',
+    marginTop: -4,
+  },
   headerTitle: {
+    flex: 1,
+    textAlign: 'center',
     fontSize: 42,
     color: '#5cc6ba',
     fontWeight: '700',

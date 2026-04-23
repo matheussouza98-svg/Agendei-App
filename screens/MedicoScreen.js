@@ -80,10 +80,14 @@ export default function MedicoScreen({ navigation }) {
       />
 
       <View style={styles.tabBar}>
-        <Text style={styles.tabIcon}>🏠</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+          <Text style={styles.tabIconActive}>🏠</Text>
+        </TouchableOpacity>
         <Text style={styles.tabIconActive}>🔎</Text>
         <Text style={styles.tabIcon}>📅</Text>
-        <Text style={styles.tabIcon}>👤</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+          <Text style={styles.tabIconActive}>👤</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

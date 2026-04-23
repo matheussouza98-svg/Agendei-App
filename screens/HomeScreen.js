@@ -73,7 +73,9 @@ export default function HomeScreen({ navigation }) {
         <Text style={styles.tabIcon}>🏠</Text>
         <Text style={styles.tabIcon}>🔎</Text>
         <Text style={styles.tabIcon}>📅</Text>
-        <Text style={styles.tabIcon}>👤</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+          <Text style={styles.tabIconActive}>👤</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
