@@ -20,8 +20,14 @@ export default function ProfileScreen({ navigation }) {
         <TouchableOpacity onPress={() => navigation.navigate('Home')}>
           <Text style={styles.tabIcon}>🏠</Text>
         </TouchableOpacity>
-        <Text style={styles.tabIcon}>🔎</Text>
+
+        {/* 🔥 LUPA FUNCIONANDO */}
+        <TouchableOpacity onPress={() => navigation.navigate('Home', { focusSearch: true })}>
+          <Text style={styles.tabIcon}>🔎</Text>
+        </TouchableOpacity>
+
         <Text style={styles.tabIcon}>📅</Text>
+
         <Text style={styles.tabIconActive}>👤</Text>
       </View>
     </View>
@@ -29,10 +35,7 @@ export default function ProfileScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f4f4f4',
-  },
+  container: { flex: 1, backgroundColor: '#f4f4f4' },
   header: {
     height: 95,
     borderBottomWidth: 1,
@@ -46,16 +49,8 @@ const styles = StyleSheet.create({
     color: '#5cc6ba',
     fontWeight: '700',
   },
-  content: {
-    flex: 1,
-    paddingTop: 30,
-    paddingHorizontal: 20,
-  },
-  label: {
-    fontSize: 14,
-    color: '#888',
-    marginBottom: 4,
-  },
+  content: { flex: 1, paddingTop: 30, paddingHorizontal: 20 },
+  label: { fontSize: 14, color: '#888', marginBottom: 4 },
   value: {
     fontSize: 18,
     color: '#333',
@@ -69,13 +64,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    paddingHorizontal: 20,
     backgroundColor: '#fff',
   },
-  tabIcon: {
-    fontSize: 28,
-  },
-  tabIconActive: {
-    fontSize: 28,
-  },
+  tabIcon: { fontSize: 28 },
+  tabIconActive: { fontSize: 28 },
 });

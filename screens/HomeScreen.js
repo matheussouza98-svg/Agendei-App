@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Platform } from 'react-native';
 
 const categorias = [
@@ -13,8 +13,17 @@ const categorias = [
   { nome: 'Lava Car', icone: '🚗' },
 ];
 
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen({ navigation, route }) {
   const [cidade, setCidade] = useState('');
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (route?.params?.focusSearch) {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 300);
+    }
+  }, [route?.params]);
 
   return (
     <View style={styles.container}>
@@ -31,6 +40,7 @@ export default function HomeScreen({ navigation }) {
 
         <View style={styles.searchBox}>
           <TextInput
+            ref={inputRef}
             placeholder="Qual cidade você está?"
             placeholderTextColor="#a8a8a8"
             style={styles.input}
@@ -70,9 +80,16 @@ export default function HomeScreen({ navigation }) {
       </View>
 
       <View style={styles.tabBar}>
-        <Text style={styles.tabIcon}>🏠</Text>
-        <Text style={styles.tabIcon}>🔎</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+          <Text style={styles.tabIcon}>🏠</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => inputRef.current?.focus()}>
+          <Text style={styles.tabIcon}>🔎</Text>
+        </TouchableOpacity>
+
         <Text style={styles.tabIcon}>📅</Text>
+
         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
           <Text style={styles.tabIconActive}>👤</Text>
         </TouchableOpacity>
@@ -82,10 +99,7 @@ export default function HomeScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f4f4f4',
-  },
+  container: { flex: 1, backgroundColor: '#f4f4f4' },
   header: {
     height: 90,
     justifyContent: 'flex-end',
@@ -94,15 +108,8 @@ const styles = StyleSheet.create({
     borderBottomColor: '#e4e4e4',
     paddingBottom: 16,
   },
-  logoImage: {
-    width: 190,
-    height: 44,
-  },
-  content: {
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 18,
-  },
+  logoImage: { width: 190, height: 44 },
+  content: { flex: 1, paddingHorizontal: 20, paddingTop: 18 },
   titulo: {
     fontSize: 24,
     color: '#3f3f3f',
@@ -126,28 +133,11 @@ const styles = StyleSheet.create({
     color: '#555',
     backgroundColor: 'transparent',
     borderWidth: 0,
-    borderColor: 'transparent',
-    borderTopWidth: 0,
-    borderRightWidth: 0,
-    borderBottomWidth: 0,
-    borderLeftWidth: 0,
-    borderRadius: 0,
-    paddingVertical: 0,
-    paddingHorizontal: 0,
-    margin: 0,
-    includeFontPadding: false,
     ...(Platform.OS === 'web'
-      ? {
-          outlineStyle: 'none',
-          outlineWidth: 0,
-          boxShadow: 'none',
-        }
+      ? { outlineStyle: 'none', boxShadow: 'none' }
       : null),
   },
-  pinImage: {
-    width: 20,
-    height: 24,
-  },
+  pinImage: { width: 20, height: 24 },
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -161,12 +151,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
-    paddingHorizontal: 4,
   },
-  emoji: {
-    fontSize: 34,
-    marginBottom: 7,
-  },
+  emoji: { fontSize: 34, marginBottom: 7 },
   cardText: {
     fontSize: 15,
     color: '#5f6b6f',
@@ -176,13 +162,10 @@ const styles = StyleSheet.create({
     height: 76,
     borderTopWidth: 1,
     borderTopColor: '#e2e2e2',
-    backgroundColor: '#f4f4f4',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
-  tabIcon: {
-    fontSize: 31,
-    color: '#c6c6c6',
-  },
+  tabIcon: { fontSize: 31, color: '#c6c6c6' },
+  tabIconActive: { fontSize: 31, color: '#6c63ff' },
 });

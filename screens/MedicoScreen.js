@@ -68,7 +68,7 @@ export default function MedicoScreen({ navigation }) {
           <TouchableOpacity
             style={styles.item}
             activeOpacity={0.8}
-            onPress={() => navigation.navigate('Reservas', { clinica: item })}
+            onPress={() => navigation.navigate('Clinica', { clinica: item })}
           >
             <Text style={styles.nome}>{item.nome}</Text>
             <Text style={styles.info}>{item.endereco}</Text>
