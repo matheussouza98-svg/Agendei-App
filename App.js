@@ -9,6 +9,7 @@ import MedicoScreen from './screens/MedicoScreen';
 import ClinicaScreen from './screens/ClinicaScreen';
 import ReservasScreen from './screens/ReservasScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import AgendarScreen from './screens/AgendarScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,7 @@ export default function App() {
         <Stack.Screen name="Clinica" component={ClinicaScreen} />
         <Stack.Screen name="Reservas" component={ReservasScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Agendar" component={AgendarScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

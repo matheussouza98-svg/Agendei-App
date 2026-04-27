@@ -16,17 +16,19 @@ export default function ProfileScreen({ navigation }) {
         <Text style={styles.value}>matheusmorais78965@gmail.com</Text>
       </View>
 
+      {/* MENU CORRIGIDO */}
       <View style={styles.tabBar}>
         <TouchableOpacity onPress={() => navigation.navigate('Home')}>
           <Text style={styles.tabIcon}>🏠</Text>
         </TouchableOpacity>
 
-        {/* 🔥 LUPA FUNCIONANDO */}
         <TouchableOpacity onPress={() => navigation.navigate('Home', { focusSearch: true })}>
           <Text style={styles.tabIcon}>🔎</Text>
         </TouchableOpacity>
 
-        <Text style={styles.tabIcon}>📅</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('')}>
+          <Text style={styles.tabIcon}>📅</Text>
+        </TouchableOpacity>
 
         <Text style={styles.tabIconActive}>👤</Text>
       </View>
@@ -36,6 +38,7 @@ export default function ProfileScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#f4f4f4' },
+
   header: {
     height: 95,
     borderBottomWidth: 1,
@@ -44,19 +47,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingBottom: 14,
   },
+
   headerTitle: {
     fontSize: 24,
     color: '#5cc6ba',
     fontWeight: '700',
   },
+
   content: { flex: 1, paddingTop: 30, paddingHorizontal: 20 },
+
   label: { fontSize: 14, color: '#1f1f1f', marginBottom: 4 },
+
   value: {
     fontSize: 18,
     color: '#868686',
     fontWeight: '600',
     marginBottom: 20,
   },
+
   tabBar: {
     height: 85,
     borderTopWidth: 1,
@@ -66,6 +74,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
   },
+
   tabIcon: { fontSize: 28 },
   tabIconActive: { fontSize: 28 },
 });

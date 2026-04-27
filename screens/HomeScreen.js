@@ -1,5 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Platform } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  Platform,
+} from 'react-native';
 
 const categorias = [
   { nome: 'Médico', icone: '🧑‍⚕️' },
@@ -53,6 +61,7 @@ export default function HomeScreen({ navigation, route }) {
             autoComplete="off"
             importantForAutofill="no"
           />
+
           <Image
             source={require('../assets/pin.png')}
             style={styles.pinImage}
@@ -99,7 +108,11 @@ export default function HomeScreen({ navigation, route }) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f4f4f4' },
+  container: {
+    flex: 1,
+    backgroundColor: '#f4f4f4',
+  },
+
   header: {
     height: 90,
     justifyContent: 'flex-end',
@@ -108,8 +121,18 @@ const styles = StyleSheet.create({
     borderBottomColor: '#e4e4e4',
     paddingBottom: 16,
   },
-  logoImage: { width: 190, height: 44 },
-  content: { flex: 1, paddingHorizontal: 20, paddingTop: 18 },
+
+  logoImage: {
+    width: 190,
+    height: 44,
+  },
+
+  content: {
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingTop: 18,
+  },
+
   titulo: {
     fontSize: 24,
     color: '#3f3f3f',
@@ -117,6 +140,7 @@ const styles = StyleSheet.create({
     marginBottom: 18,
     textAlign: 'center',
   },
+
   searchBox: {
     backgroundColor: '#e7eaea',
     borderRadius: 24,
@@ -126,6 +150,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+
   input: {
     flex: 1,
     height: '100%',
@@ -133,16 +158,26 @@ const styles = StyleSheet.create({
     color: '#555',
     backgroundColor: 'transparent',
     borderWidth: 0,
+
     ...(Platform.OS === 'web'
-      ? { outlineStyle: 'none', boxShadow: 'none' }
-      : null),
+      ? {
+          outlineStyle: 'none',
+          boxShadow: 'none',
+        }
+      : {}),
   },
-  pinImage: { width: 20, height: 24 },
+
+  pinImage: {
+    width: 20,
+    height: 24,
+  },
+
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
+
   card: {
     width: '31%',
     backgroundColor: '#e7eaea',
@@ -152,12 +187,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 16,
   },
-  emoji: { fontSize: 34, marginBottom: 7 },
+
+  emoji: {
+    fontSize: 34,
+    marginBottom: 7,
+  },
+
   cardText: {
     fontSize: 15,
     color: '#5f6b6f',
     textAlign: 'center',
   },
+
   tabBar: {
     height: 76,
     borderTopWidth: 1,
@@ -166,6 +207,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
   },
-  tabIcon: { fontSize: 31, color: '#c6c6c6' },
-  tabIconActive: { fontSize: 31, color: '#6c63ff' },
+
+  tabIcon: {
+    fontSize: 31,
+    color: '#c6c6c6',
+  },
+
+  tabIconActive: {
+    fontSize: 31,
+    color: '#6c63ff',
+  },
 });
