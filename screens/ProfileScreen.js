@@ -50,10 +50,10 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   content: { flex: 1, paddingTop: 30, paddingHorizontal: 20 },
-  label: { fontSize: 14, color: '#888', marginBottom: 4 },
+  label: { fontSize: 14, color: '#1f1f1f', marginBottom: 4 },
   value: {
     fontSize: 18,
-    color: '#333',
+    color: '#868686',
     fontWeight: '600',
     marginBottom: 20,
   },
