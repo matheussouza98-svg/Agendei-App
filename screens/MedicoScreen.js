@@ -83,8 +83,12 @@ export default function MedicoScreen({ navigation }) {
         <TouchableOpacity onPress={() => navigation.navigate('Home')}>
           <Text style={styles.tabIconActive}>🏠</Text>
         </TouchableOpacity>
-        <Text style={styles.tabIconActive}>🔎</Text>
-        <Text style={styles.tabIcon}>📅</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Home', { focusSearch: true })}>
+          <Text style={styles.tabIconActive}>🔎</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Reservas')}>
+          <Text style={styles.tabIcon}>📅</Text>
+        </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
           <Text style={styles.tabIconActive}>👤</Text>
         </TouchableOpacity>
@@ -99,7 +103,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f4f4f4',
   },
   header: {
-    height: 95,
+    height: 88,
     borderBottomWidth: 1,
     borderBottomColor: '#e3e3e3',
     flexDirection: 'row',
@@ -113,7 +117,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   backIcon: {
-    fontSize: 40,
+    fontSize: 34,
     color: '#5cc6ba',
     marginTop: -4,
   },
@@ -123,13 +127,13 @@ const styles = StyleSheet.create({
     marginRight: 40,
   },
   headerTitle: {
-    fontSize: 24,
+    fontSize: 22,
     color: '#5cc6ba',
     fontWeight: '700',
     lineHeight: 28,
   },
   headerSubtitle: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#9b9b9b',
     marginTop: 2,
     lineHeight: 20,
@@ -141,11 +145,11 @@ const styles = StyleSheet.create({
     borderBottomColor: '#e3e3e3',
   },
   searchInput: {
-    height: 52,
+    height: 50,
     borderRadius: 26,
     backgroundColor: '#e4e8e8',
     paddingHorizontal: 22,
-    fontSize: 17,
+    fontSize: 16,
     color: '#606060',
   },
   item: {
@@ -155,13 +159,13 @@ const styles = StyleSheet.create({
     borderBottomColor: '#e0e0e0',
   },
   nome: {
-    fontSize: 20,
+    fontSize: 18,
     color: '#6f7d80',
     fontWeight: '700',
     marginBottom: 3,
   },
   info: {
-    fontSize: 15,
+    fontSize: 14,
     color: '#9a9a9a',
     lineHeight: 22,
   },
@@ -170,7 +174,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 76,
+    height: 72,
     borderTopWidth: 1,
     borderTopColor: '#e2e2e2',
     backgroundColor: '#f4f4f4',
@@ -179,11 +183,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   tabIcon: {
-    fontSize: 31,
+    fontSize: 27,
     color: '#d0d0d0',
   },
   tabIconActive: {
-    fontSize: 31,
+    fontSize: 27,
     color: '#b0b0b0',
   },
 });

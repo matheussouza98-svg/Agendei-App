@@ -97,7 +97,9 @@ export default function HomeScreen({ navigation, route }) {
           <Text style={styles.tabIcon}>🔎</Text>
         </TouchableOpacity>
 
-        <Text style={styles.tabIcon}>📅</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Reservas')}>
+          <Text style={styles.tabIcon}>📅</Text>
+        </TouchableOpacity>
 
         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
           <Text style={styles.tabIconActive}>👤</Text>
@@ -114,7 +116,7 @@ const styles = StyleSheet.create({
   },
 
   header: {
-    height: 90,
+    height: 84,
     justifyContent: 'flex-end',
     alignItems: 'center',
     borderBottomWidth: 1,
@@ -134,7 +136,7 @@ const styles = StyleSheet.create({
   },
 
   titulo: {
-    fontSize: 24,
+    fontSize: 22,
     color: '#3f3f3f',
     fontWeight: '300',
     marginBottom: 18,
@@ -154,7 +156,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     height: '100%',
-    fontSize: 20,
+    fontSize: 18,
     color: '#555',
     backgroundColor: 'transparent',
     borderWidth: 0,
@@ -182,14 +184,14 @@ const styles = StyleSheet.create({
     width: '31%',
     backgroundColor: '#e7eaea',
     borderRadius: 18,
-    height: 122,
+    height: 112,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
   },
 
   emoji: {
-    fontSize: 34,
+    fontSize: 30,
     marginBottom: 7,
   },
 
@@ -200,7 +202,7 @@ const styles = StyleSheet.create({
   },
 
   tabBar: {
-    height: 76,
+    height: 72,
     borderTopWidth: 1,
     borderTopColor: '#e2e2e2',
     flexDirection: 'row',
@@ -209,12 +211,12 @@ const styles = StyleSheet.create({
   },
 
   tabIcon: {
-    fontSize: 31,
+    fontSize: 27,
     color: '#c6c6c6',
   },
 
   tabIconActive: {
-    fontSize: 31,
+    fontSize: 27,
     color: '#6c63ff',
   },
 });

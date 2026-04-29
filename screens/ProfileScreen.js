@@ -5,6 +5,9 @@ export default function ProfileScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
+        <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('Home')}>
+          <Text style={styles.backIcon}>←</Text>
+        </TouchableOpacity>
         <Text style={styles.headerTitle}>Meu Perfil</Text>
       </View>
 
@@ -26,7 +29,7 @@ export default function ProfileScreen({ navigation }) {
           <Text style={styles.tabIcon}>🔎</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate('')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Reservas')}>
           <Text style={styles.tabIcon}>📅</Text>
         </TouchableOpacity>
 
@@ -40,16 +43,33 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#f4f4f4' },
 
   header: {
-    height: 95,
+    height: 84,
     borderBottomWidth: 1,
     borderBottomColor: '#e3e3e3',
     justifyContent: 'flex-end',
     alignItems: 'center',
     paddingBottom: 14,
+    position: 'relative',
+  },
+
+  backButton: {
+    position: 'absolute',
+    left: 12,
+    bottom: 10,
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  backIcon: {
+    fontSize: 32,
+    color: '#5cc6ba',
+    fontWeight: '700',
   },
 
   headerTitle: {
-    fontSize: 24,
+    fontSize: 22,
     color: '#5cc6ba',
     fontWeight: '700',
   },
@@ -59,14 +79,14 @@ const styles = StyleSheet.create({
   label: { fontSize: 14, color: '#1f1f1f', marginBottom: 4 },
 
   value: {
-    fontSize: 18,
+    fontSize: 16,
     color: '#868686',
     fontWeight: '600',
     marginBottom: 20,
   },
 
   tabBar: {
-    height: 85,
+    height: 72,
     borderTopWidth: 1,
     borderTopColor: '#e3e3e3',
     flexDirection: 'row',
@@ -75,6 +95,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 
-  tabIcon: { fontSize: 28 },
-  tabIconActive: { fontSize: 28 },
+  tabIcon: { fontSize: 26 },
+  tabIconActive: { fontSize: 26 },
 });

@@ -59,7 +59,7 @@ export default function ClinicaScreen({ route, navigation }) {
             <TouchableOpacity
               style={styles.botaoAgendar}
               onPress={() =>
-                navigation.navigate('Agendar', { servico })
+                navigation.navigate('Agendar', { servico, clinica })
               }
             >
               <Text style={styles.txtBotao}>Agendar</Text>
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
 
   imagem: {
     width: '100%',
-    height: 220,
+    height: 200,
   },
 
   botaoVoltar: {
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   },
 
   seta: {
-    fontSize: 34,
+    fontSize: 30,
     color: '#1cc4b1',
     fontWeight: 'bold',
   },
@@ -110,20 +110,20 @@ const styles = StyleSheet.create({
   },
 
   nomeClinica: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#222',
     marginBottom: 6,
   },
 
   info: {
-    fontSize: 15,
+    fontSize: 14,
     color: '#666',
     marginBottom: 3,
   },
 
   tituloServico: {
-    fontSize: 22,
+    fontSize: 20,
     color: '#1cc4b1',
     fontWeight: 'bold',
     marginLeft: 14,
@@ -145,13 +145,13 @@ const styles = StyleSheet.create({
   },
 
   nomeServico: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#333',
     marginBottom: 5,
   },
 
   preco: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#1cc4b1',
     fontWeight: 'bold',
   },
@@ -167,6 +167,6 @@ const styles = StyleSheet.create({
   txtBotao: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 15,
+    fontSize: 14,
   },
 });

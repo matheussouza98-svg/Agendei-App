@@ -5,12 +5,14 @@ export default function LoginScreen({ navigation }) {
 
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [erroLogin, setErroLogin] = useState('');
 
   const fazerLogin = () => {
     if (email === 'matheusmorais78965@gmail.com' && senha === '1234') {
+      setErroLogin('');
       navigation.replace('Home');
     } else {
-      alert('Email ou senha inválidos');
+      setErroLogin('E-mail ou senha incorretos. Tente novamente.');
     }
   };
 
@@ -30,7 +32,10 @@ export default function LoginScreen({ navigation }) {
           placeholder="E-mail"
           style={styles.input}
           value={email}
-          onChangeText={setEmail}
+          onChangeText={(valor) => {
+            setEmail(valor);
+            if (erroLogin) setErroLogin('');
+          }}
         />
 
         <TextInput
@@ -38,8 +43,13 @@ export default function LoginScreen({ navigation }) {
           secureTextEntry
           style={styles.input}
           value={senha}
-          onChangeText={setSenha}
+          onChangeText={(valor) => {
+            setSenha(valor);
+            if (erroLogin) setErroLogin('');
+          }}
         />
+
+        {!!erroLogin && <Text style={styles.mensagemErro}>{erroLogin}</Text>}
 
         <TouchableOpacity style={styles.botao} onPress={fazerLogin}>
           <Text style={styles.textoBotao}>Acessar</Text>
@@ -63,26 +73,26 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f2f2f2',
     alignItems: 'center',
-    paddingTop: 30,
+    paddingTop: 20,
     paddingHorizontal: 20,
   },
 
   logo: {
-    width: 200,
-    height: 80,
+    width: 180,
+    height: 70,
     resizeMode: 'contain',
   },
 
   // 🔥 aqui está o segredo
   formArea: {
     width: '100%',
-    marginTop: 180, // distância ideal da logo
+    marginTop: 120, // distância melhor para iPhone
     alignItems: 'center',
   },
 
   input: {
     width: '90%', // 👈 deixa mais bonito igual da imagem
-    height: 55,
+    height: 52,
     backgroundColor: '#e0e0e0',
     borderRadius: 30,
     paddingHorizontal: 20,
@@ -91,7 +101,7 @@ const styles = StyleSheet.create({
 
   botao: {
     width: '90%', // 👈 alinhado com os inputs
-    height: 55,
+    height: 52,
     backgroundColor: '#5cc6ba',
     borderRadius: 30,
     justifyContent: 'center',
@@ -100,8 +110,17 @@ const styles = StyleSheet.create({
 
   textoBotao: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: 'bold',
+  },
+
+  mensagemErro: {
+    width: '90%',
+    color: '#c0392b',
+    fontSize: 14,
+    textAlign: 'center',
+    marginBottom: 12,
+    fontWeight: '600',
   },
 
   rodape: {

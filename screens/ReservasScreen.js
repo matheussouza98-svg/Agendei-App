@@ -2,9 +2,44 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList, Image } from 'react-native';
 
 export default function ReservasScreen({ route, navigation }) {
+  const abrirServicosDaClinica = (item) => {
+    navigation.navigate('Clinica', {
+      clinica: {
+        nome: item.clinica,
+        endereco: item.endereco,
+        bairro: item.bairro,
+        telefone: item.telefone,
+      },
+    });
+  };
+
+  const abrirReagendamento = (item) => {
+    const precoNumerico = Number(
+      String(item.valor || '')
+        .replace('R$', '')
+        .replace(/\./g, '')
+        .replace(',', '.')
+        .trim()
+    ) || 0;
+
+    navigation.navigate('Agendar', {
+      servico: {
+        nome: item.titulo,
+        preco: precoNumerico,
+      },
+      clinica: {
+        nome: item.clinica,
+        endereco: item.endereco,
+        bairro: item.bairro,
+        telefone: item.telefone,
+      },
+    });
+  };
+
+  const reservaRecebida = route.params?.novaReserva;
   const clinicaSelecionada = route.params?.clinica?.nome || 'Clínica Médica São Remo';
 
-  const reservas = [
+  const reservasPadrao = [
     {
       id: '1',
       titulo: 'Consulta Dr. Alberto Souza',
@@ -30,11 +65,24 @@ export default function ReservasScreen({ route, navigation }) {
       mostraAcoes: false,
     },
   ];
-
+  const reservas = reservaRecebida
+    ? [
+        {
+          ...reservaRecebida,
+          id: `${reservaRecebida.id}-1`,
+          mostraAcoes: true,
+        },
+        {
+          ...reservaRecebida,
+          id: `${reservaRecebida.id}-2`,
+          mostraAcoes: false,
+        },
+      ]
+    : reservasPadrao;
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+        <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('Home')}>
           <Text style={styles.backIcon}>←</Text>
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Minhas Reservas</Text>
@@ -75,10 +123,18 @@ export default function ReservasScreen({ route, navigation }) {
 
             {item.mostraAcoes && (
               <View style={styles.actions}>
-                <TouchableOpacity style={styles.btnReagendar} activeOpacity={0.85}>
+                <TouchableOpacity
+                  style={styles.btnReagendar}
+                  activeOpacity={0.85}
+                  onPress={() => abrirReagendamento(item)}
+                >
                   <Text style={styles.btnText}>Reagendar</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.btnExcluir} activeOpacity={0.85}>
+                <TouchableOpacity
+                  style={styles.btnExcluir}
+                  activeOpacity={0.85}
+                  onPress={() => abrirServicosDaClinica(item)}
+                >
                   <Text style={styles.btnText}>Excluir Reserva</Text>
                 </TouchableOpacity>
               </View>
@@ -92,8 +148,12 @@ export default function ReservasScreen({ route, navigation }) {
         <TouchableOpacity onPress={() => navigation.navigate('Home')}>
           <Text style={styles.tabIconActive}>🏠</Text>
         </TouchableOpacity>
-        <Text style={styles.tabIcon}>🔎</Text>
-        <Text style={styles.tabIconActive}>📅</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Home', { focusSearch: true })}>
+          <Text style={styles.tabIcon}>🔎</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Reservas')}>
+          <Text style={styles.tabIconActive}>📅</Text>
+        </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
           <Text style={styles.tabIconActive}>👤</Text>
         </TouchableOpacity>
@@ -108,7 +168,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f4f4f4',
   },
   header: {
-    height: 95,
+    height: 84,
     borderBottomWidth: 1,
     borderBottomColor: '#e3e3e3',
     flexDirection: 'row',
@@ -122,14 +182,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   backIcon: {
-    fontSize: 40,
+    fontSize: 34,
     color: '#5cc6ba',
     marginTop: -4,
   },
   headerTitle: {
     flex: 1,
     textAlign: 'center',
-    fontSize: 42,
+    fontSize: 28,
     color: '#5cc6ba',
     fontWeight: '700',
   },
@@ -140,12 +200,12 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   tituloConsulta: {
-    fontSize: 18,
+    fontSize: 17,
     color: '#6f7d80',
     fontWeight: '700',
   },
   nomeClinica: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#8e8e8e',
     marginTop: 2,
     marginBottom: 8,
@@ -161,15 +221,15 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   iconImage: {
-    width: 28,
-    height: 28,
+    width: 24,
+    height: 24,
     marginRight: 8,
   },
   iconClock: {
     marginLeft: 20,
   },
   textoInfo: {
-    fontSize: 14,
+    fontSize: 13,
     color: '#9a9a9a',
     lineHeight: 24,
   },
@@ -181,7 +241,7 @@ const styles = StyleSheet.create({
   btnReagendar: {
     backgroundColor: '#5cc6ba',
     width: '44%',
-    height: 52,
+    height: 48,
     borderRadius: 14,
     justifyContent: 'center',
     alignItems: 'center',
@@ -189,13 +249,13 @@ const styles = StyleSheet.create({
   btnExcluir: {
     backgroundColor: '#df544d',
     width: '44%',
-    height: 52,
+    height: 48,
     borderRadius: 14,
     justifyContent: 'center',
     alignItems: 'center',
   },
   btnText: {
-    fontSize: 14,
+    fontSize: 13,
     color: '#fff',
   },
   tabBar: {
@@ -203,7 +263,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 76,
+    height: 72,
     borderTopWidth: 1,
     borderTopColor: '#e2e2e2',
     backgroundColor: '#f4f4f4',
@@ -212,11 +272,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   tabIcon: {
-    fontSize: 31,
+    fontSize: 27,
     color: '#d0d0d0',
   },
   tabIconActive: {
-    fontSize: 31,
+    fontSize: 27,
     color: '#b0b0b0',
   },
 });
