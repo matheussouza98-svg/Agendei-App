@@ -3,7 +3,13 @@
 ## 🧑‍💻 Atividade Avaliativa
 Projeto desenvolvido para a disciplina de Desenvolvimento de Aplicativos Mobile.
 
+**Turma:** 3° Desenvolvimento de Sistemas
 **Professor:** Nataniel de Aguiar da Silva  
+**Alunos:** Matheus Morais de Souza
+Pedro Lucas Santos de Lima
+Antônio Gustavo Gomes Herculano
+Maria Cecília Soares Lima
+
 **Data de entrega:** 02 de maio  
 
 ---
